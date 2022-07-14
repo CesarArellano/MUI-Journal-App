@@ -52,41 +52,46 @@ export const NoteView = () => {
   }
 
   return (
-    <Grid
-      container
-      direction="row"
-      alignItems="center"
-      justifyContent="space-between"
-      sx={{ mb: 1 }}
-    >
-      <Grid item>
-        <Typography fontSize={ 39 } fontWeight="light" >{ dateString }</Typography>
-      </Grid>
-      <Grid item>
-        <input 
-          type="file"
-          accept="image/*"
-          ref={ fileInputRef }
-          onChange={ onFileInputChange }
-          style={{ display: 'none' }}
-          multiple
-        />
-        <IconButton
-          color="primary"
-          disabled={ isSaving }
-          onClick={ () => fileInputRef.current.click() }
-          sx={{ mr: 1 }}
-        >
-          <UploadOutlined />
-        </IconButton>
-        <Button
-          disabled={ isSaving }
-          variant="contained"
-          onClick={ onSaveNote }  
-        >
-          <SaveOutlined sx={{ fontSize: 30, mr: 1 }}/>
-          <Typography>Guardar</Typography>
-        </Button>
+    <Grid container>
+      <Grid
+        container
+        direction="row"
+        alignItems="center"
+        sx={{ 
+          mb: 2,
+          justifyContent: 'space-between',
+          "@media (max-width: 1059px)": { justifyContent: 'end' } 
+        }}
+      >
+        <Grid item>
+          <Typography variant="h4" fontWeight="light" >{ dateString }</Typography>
+        </Grid>
+        <Grid item sx={{ "@media (max-width: 1059px)": { marginTop: 1 }}}>
+          <input 
+            type="file"
+            accept="image/*"
+            ref={ fileInputRef }
+            onChange={ onFileInputChange }
+            style={{ display: 'none' }}
+            multiple
+          />
+          <IconButton
+            color="primary"
+            disabled={ isSaving }
+            onClick={ () => fileInputRef.current.click() }
+            sx={{ mr: 1 }}
+          >
+            <UploadOutlined />
+          </IconButton>
+          <Button
+            disabled={ isSaving }
+            variant="contained"
+            onClick={ onSaveNote }  
+          >
+            <SaveOutlined sx={{ fontSize: 30, mr: 1 }}/>
+            <Typography>Guardar</Typography>
+          </Button>
+        </Grid>
       </Grid>
 
       <Grid container>
