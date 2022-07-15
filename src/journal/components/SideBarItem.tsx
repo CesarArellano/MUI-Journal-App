@@ -1,19 +1,23 @@
-import { TurnedInNot } from '@mui/icons-material'
+import { NoteAlt } from '@mui/icons-material'
 import { Grid, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import { NoteProps } from '../../store/journal/journalSlice';
 import { useMemo } from 'react';
 import { startSetActiveNote } from '../../store/journal/thunks';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface Props {
   note: NoteProps
 }
 
 export const SideBarItem = ({ note }: Props ) => {
+  const { activeNote } = useSelector<any,any>(state => state.journal);
   const dispatch = useDispatch<any>();
   const { title = '', body } = note;
   
   const newTitle = useMemo(() => {
+    if( title === '' ) {
+      return 'Sin título';
+    }
     return title.length > 17
       ? title.substring(0, 17) + '...'
       : title;
@@ -24,12 +28,15 @@ export const SideBarItem = ({ note }: Props ) => {
   }
   
   return (
-    <ListItem disablePadding>
+    <ListItem
+      disablePadding
+      selected={ activeNote.id === note.id }
+    >
       <ListItemButton
         onClick={ onActiveNote }
       >
         <ListItemIcon>
-          <TurnedInNot />
+          <NoteAlt />
         </ListItemIcon>
         <Grid container>
           <ListItemText primary={ newTitle } />

@@ -66,7 +66,7 @@ export const NoteView = () => {
         <Grid item>
           <Typography variant="h4" fontWeight="light" >{ dateString }</Typography>
         </Grid>
-        <Grid item sx={{ "@media (max-width: 1059px)": { marginTop: 1 }}}>
+        <Grid item>
           <input 
             type="file"
             accept="image/*"
@@ -83,15 +83,8 @@ export const NoteView = () => {
           >
             <UploadOutlined />
           </IconButton>
-          <Button
-            disabled={ isSaving }
-            variant="contained"
-            onClick={ onSaveNote }  
-          >
-            <SaveOutlined sx={{ fontSize: 30, mr: 1 }}/>
-            <Typography>Guardar</Typography>
-          </Button>
         </Grid>
+        
       </Grid>
 
       <Grid container>
@@ -117,16 +110,28 @@ export const NoteView = () => {
           minRows={ 5 }
         />
       </Grid>
-      <Grid container justifyContent="end" sx={{ mt: 1 }}>
+      <Grid container justifyContent="end" sx={{ mt: 1 }} >
         <Button
+          variant="contained"
           color="error"
           onClick={ onDeleteNote }
+          sx={{ mr: 1 }}
         >
           <DeleteOutline
             sx={{ mr: 1 }}
           />
           Borrar Nota
         </Button>
+        <Grid item>
+          <Button
+            disabled={ isSaving }
+            variant="contained"
+            onClick={ onSaveNote }  
+          >
+            <SaveOutlined sx={{ fontSize: 30, mr: 1 }}/>
+            <Typography>Guardar</Typography>
+          </Button>
+        </Grid>
       </Grid>
       <Grid container>
         <ImageGallery images={ note.imageUrls } />
