@@ -30,7 +30,7 @@ export const SideBarItem = ({ note }: Props ) => {
   return (
     <ListItem
       disablePadding
-      selected={ activeNote.id === note.id }
+      selected={ activeNote?.id === note.id }
     >
       <ListItemButton
         onClick={ onActiveNote }
