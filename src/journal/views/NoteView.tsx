@@ -60,7 +60,7 @@ export const NoteView = () => {
         sx={{ 
           mb: 2,
           justifyContent: 'space-between',
-          "@media (max-width: 1059px)": { justifyContent: 'end' } 
+          "@media (max-width: 850px)": { justifyContent: 'end' } 
         }}
       >
         <Grid item>
@@ -110,12 +110,21 @@ export const NoteView = () => {
           minRows={ 5 }
         />
       </Grid>
-      <Grid container justifyContent="end" sx={{ mt: 1 }} >
+      <Grid container
+        sx={{
+          mt: 1 ,
+          justifyContent: 'space-between',
+          "@media (max-width: 385px)": { justifyContent: 'end' }
+        }}
+      >
         <Button
           variant="contained"
           color="error"
           onClick={ onDeleteNote }
-          sx={{ mr: 1 }}
+          sx={{
+            mr: 1,
+            "@media (max-width: 387px)": { mr: 0 }
+          }}
         >
           <DeleteOutline
             sx={{ mr: 1 }}
@@ -126,7 +135,8 @@ export const NoteView = () => {
           <Button
             disabled={ isSaving }
             variant="contained"
-            onClick={ onSaveNote }  
+            onClick={ onSaveNote }
+            sx={{ "@media (max-width: 379px)": { mt: 1 }  }}
           >
             <SaveOutlined sx={{ fontSize: 30, mr: 1 }}/>
             <Typography>Guardar</Typography>
